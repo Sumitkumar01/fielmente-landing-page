@@ -78,8 +78,8 @@ export const ChooseUsCard = ({ title, subtitle, Icon }: ChooseCardProsData) => {
   return (
     <div className="flex flex-col gap-3">
       <div className='flex items-center justify-center lg:justify-start'>{Icon}</div>
-      <h2 className="text-blue-dark text-3xl w-[65%] capitalize">{title}</h2>
-      <p className="text-lg text-[#797979] text-justify">{subtitle}</p>
+      <h2 className="text-blue-dark text-3xl lg:w-[65%] capitalize lg:text-start text-center">{title}</h2>
+      <p className="text-lg text-[#797979] lg:text-justify text-center">{subtitle}</p>
     </div>
   );
 };

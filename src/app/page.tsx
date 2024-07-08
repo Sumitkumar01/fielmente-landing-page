@@ -53,13 +53,13 @@ export default function Home() {
       {/* Looking for Best Hotel***** */}
       <div className="py-20 px-6">
         <div className="max-w-[920px] mx-auto bg-blue-dark px-20 py-16 grid md:grid-cols-5 gap-8 items-center rounded-3xl">
-          <div className="md:col-span-4">
+          <div className="md:col-span-4 lg:text-start text-center">
             <h2 className="md:text-4xl text-3xl">
               Looking for the India’s Best Hotel Marketing{" "}
               <span className="text-orange-primary">Agency?</span>
             </h2>
           </div>
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 text-center">
             <Link
               href={"/contact"}
               className="bg-orange-primary px-8 py-5 rounded-md text-lg border border-orange-primary hover:bg-transparent duration-300"

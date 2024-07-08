@@ -33,7 +33,7 @@ const Header = () => {
                 <div className="lg:hidden flex items-center">
                     <Link
                         href={"tel:+919501868775 "}
-                        className="flex items-center text-orange-500 text-xl"
+                        className="flex items-center"
                     >
                         <OutlinePhoneIcon />
                     </Link>
@@ -60,8 +60,8 @@ export const OutlineMailIcon = () => {
 export const OutlinePhoneIcon = () => {
     return (
         <svg
-            width="20"
-            height="26"
+            width="30"
+            height="40"
             viewBox="0 0 26 26"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

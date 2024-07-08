@@ -88,7 +88,7 @@ export const ServiceCard = ({ title, Icon }: OurServiceProsData) => {
     <div>
       <div className="bg-white rounded-xl lg:w-[170px] h-[200px] flex flex-col gap-4 items-center justify-center p-3">
         <div>{Icon}</div>
-        <h2 className="md:text-xl text-lg text-blue-dark text-center font-normal capitalize">
+        <h2 className="md:text-xl text-lg text-blue-dark text-center capitalize">
           {title}
         </h2>
       </div>
