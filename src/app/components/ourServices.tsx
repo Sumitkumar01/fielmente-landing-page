@@ -1,3 +1,14 @@
+"use client"
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay } from 'swiper/modules';
 import SectionHeading from "./SectionHeadings/SectionHeading";
 import Link from "next/link";
 import { title } from "process";
@@ -19,10 +30,45 @@ function OurServices() {
   return (
     <div>
       <SectionHeading {...SectionHeadingDetails} />
-      <div className="flex flex-wrap gap-6 justify-center mt-16">
-        {Services.map((item, index) => (
-          <ServiceCard {...item} key={index} />
-        ))}
+      <div className="lg:block hidden">
+        <div className="flex flex-wrap gap-6 justify-center mt-16">
+          {Services.map((item, index) => (
+            <ServiceCard {...item} key={index} />
+          ))}
+        </div>
+      </div>
+
+      <div className='lg:hidden block py-5'>
+        <div>
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={10}
+            loop={true}
+            slidesPerView={1}
+            speed={900}
+            autoplay={{
+              delay: 4000,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
+            className="mySwiper"
+          >
+
+            {Services.map((item, index) => (
+              <SwiperSlide key={index} className='t'>
+                <ServiceCard {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
 
       <div className="flex justify-center mt-16">
@@ -39,11 +85,13 @@ function OurServices() {
 
 export const ServiceCard = ({ title, Icon }: OurServiceProsData) => {
   return (
-    <div className="bg-white rounded-xl w-[170px] flex flex-col gap-4 items-center p-3">
-      <div>{Icon}</div>
-      <h2 className="md:text-xl text-lg text-blue-dark text-center font-normal capitalize">
-        {title}
-      </h2>
+    <div>
+      <div className="bg-white rounded-xl lg:w-[170px] h-[200px] flex flex-col gap-4 items-center justify-center p-3">
+        <div>{Icon}</div>
+        <h2 className="md:text-xl text-lg text-blue-dark text-center font-normal capitalize">
+          {title}
+        </h2>
+      </div>
     </div>
   );
 };

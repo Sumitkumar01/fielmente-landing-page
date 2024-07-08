@@ -1,3 +1,14 @@
+"use client"
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay } from 'swiper/modules';
 import Link from "next/link";
 import React from "react";
 import SectionHeading from "./SectionHeadings/SectionHeading";
@@ -51,12 +62,46 @@ function HotelPerformacne() {
   return (
     <div>
       <SectionHeading {...SectionHeadingDetails} />
-      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-16 mt-16">
-        {HotelPerormaceData.map((item, index) => (
-          <HotelPerfomaceCard {...item} index={index} key={index} />
-        ))}
-      </div>
 
+      <div className="lg:block hidden">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-16 mt-16">
+          {HotelPerormaceData.map((item, index) => (
+            <HotelPerfomaceCard {...item} index={index} key={index} />
+          ))}
+        </div>
+      </div>
+      <div className='lg:hidden block py-5'>
+        <div>
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={10}
+            loop={true}
+            slidesPerView={1}
+            speed={900}
+            autoplay={{
+              delay: 4000,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
+            className="mySwiper"
+          >
+
+            {HotelPerormaceData.map((item, index) => (
+              <SwiperSlide key={index}>
+                <HotelPerfomaceCard {...item} index={index} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
       <div className="flex justify-center mt-16">
         <Link
           href={"/contact"}

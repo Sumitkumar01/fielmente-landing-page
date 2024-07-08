@@ -1,4 +1,14 @@
+"use client"
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay } from 'swiper/modules';
 import React from "react";
 import { WebSiteDevelopmentIcon } from "./ourServices";
 import SectionHeading from "./SectionHeadings/SectionHeading";
@@ -21,10 +31,44 @@ function ChooseUs() {
   return (
     <div>
       <SectionHeading {...SectionHeadingDetails} />
-      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-16 mt-16">
-        {ChooseUsData.map((item, index) => (
-          <ChooseUsCard {...item} key={index} />
-        ))}
+      <div className="lg:block hidden">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-16 mt-16">
+          {ChooseUsData.map((item, index) => (
+            <ChooseUsCard {...item} key={index} />
+          ))}
+        </div>
+      </div>
+      <div className='lg:hidden block py-5'>
+        <div>
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={10}
+            loop={true}
+            slidesPerView={1}
+            speed={900}
+            autoplay={{
+              delay: 4000,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
+            className="mySwiper"
+          >
+
+            {ChooseUsData.map((item, index) => (
+              <SwiperSlide key={index}>
+                <ChooseUsCard {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
@@ -33,7 +77,7 @@ function ChooseUs() {
 export const ChooseUsCard = ({ title, subtitle, Icon }: ChooseCardProsData) => {
   return (
     <div className="flex flex-col gap-3">
-      <div>{Icon}</div>
+      <div className='flex items-center justify-center lg:justify-start'>{Icon}</div>
       <h2 className="text-blue-dark text-3xl w-[65%] capitalize">{title}</h2>
       <p className="text-lg text-[#797979] text-justify">{subtitle}</p>
     </div>
