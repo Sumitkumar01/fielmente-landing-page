@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import { Autoplay } from 'swiper/modules';
 import React from "react";
 import { WebSiteDevelopmentIcon } from "./ourServices";
-import SectionHeading from "./SectionHeadings/SectionHeading";
+import SectionHeading from "./SectionHeading";
 
 export interface ChooseCardProsData {
   title: string;
@@ -22,10 +22,13 @@ export interface ChooseCardProsData {
 const SectionHeadingDetails = {
   title: "Why Choose ",
   span: "Us?",
-  description:
-    "We offer a range of services like Hotel Marketing, Restaurant Marketing, Cloud Kitchen Marketing, Hostel Marketing, Cafe Marketing to fuel your business growth and success.",
+  description: "Choose us for our hospitality-focused expertise, tailored solutions, proven results, comprehensive approach, and unwavering commitment to your hotel's or resort's success.",
+  // description:
+  //   "We offer a range of services like Hotel Marketing, Restaurant Marketing, Cloud Kitchen Marketing, Hostel Marketing, Cafe Marketing to fuel your business growth and success.",
   Color: true,
 };
+
+// Force of 20+ Hospitality Marketing Experts
 
 function ChooseUs() {
   return (
@@ -277,7 +280,7 @@ const ChooseUsData = [
     title: "Exceptional Hospitality Website Development",
     subtitle:
       "Our website development expertise provides an outstanding user experience from design to functionality.",
-    Icon: <WebSiteDevelopmentIcon />,
+    Icon: <WebSiteDevelopmentIcon width={60} height={60}/>,
   },
 ];
 

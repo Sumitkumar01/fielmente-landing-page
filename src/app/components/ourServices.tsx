@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay } from 'swiper/modules';
-import SectionHeading from "./SectionHeadings/SectionHeading";
+import SectionHeading from "./SectionHeading";
 import Link from "next/link";
 import { title } from "process";
 import React from "react";
@@ -23,7 +23,7 @@ const SectionHeadingDetails = {
   title: "Our",
   span: "Services",
   description:
-    "We offer a range of services like Hotel Marketing, Restaurant Marketing, Cloud Kitchen Marketing, Hostel Marketing, Cafe Marketing to fuel your business growth and success.",
+    "We specialize in marketing service for hotels, resorts, restaurants, cloud kitchens, hostels, and cafes to drive your business growth and success.",
 };
 
 function OurServices() {
@@ -32,7 +32,7 @@ function OurServices() {
       <SectionHeading {...SectionHeadingDetails} />
       <div className="lg:block hidden">
         <div className="flex flex-wrap gap-6 justify-center mt-16">
-          {Services.map((item, index) => (
+          {ServicesDesktop.map((item, index) => (
             <ServiceCard {...item} key={index} />
           ))}
         </div>
@@ -43,12 +43,13 @@ function OurServices() {
           <Swiper
             modules={[Autoplay]}
             spaceBetween={10}
-            loop={true}
-            slidesPerView={1}
+            // loop={true}
+            slidesPerView={2}
             speed={900}
             autoplay={{
               delay: 4000,
             }}
+            centeredSlides={true}
             breakpoints={{
               640: {
                 slidesPerView: 2,
@@ -62,7 +63,7 @@ function OurServices() {
             className="mySwiper"
           >
 
-            {Services.map((item, index) => (
+            {ServicesMobile.map((item, index) => (
               <SwiperSlide key={index} className='t'>
                 <ServiceCard {...item} />
               </SwiperSlide>
@@ -71,10 +72,10 @@ function OurServices() {
         </div>
       </div>
 
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-center lg:mt-16 mt-4">
         <Link
-          href={"/contact"}
-          className="bg-orange-primary border border-orange-primary hover:bg-transparent px-8 py-3 rounded-md text-lg active:scale-90 duration-300  "
+          href={"#contact"}
+          className="bg-orange-primary font-bold border border-orange-primary hover:bg-transparent px-8 py-3 rounded-md text-lg active:scale-90 duration-300  "
         >
           Contact Us
         </Link>
@@ -85,10 +86,11 @@ function OurServices() {
 
 export const ServiceCard = ({ title, Icon }: OurServiceProsData) => {
   return (
-    <div>
-      <div className="bg-white rounded-xl lg:w-[170px] h-[200px] flex flex-col gap-4 items-center justify-center p-3">
-        <div>{Icon}</div>
-        <h2 className="md:text-xl text-lg text-blue-dark text-center capitalize">
+
+    <div className="w-full lg:block lg:w-max flex items-center justify-center mt-3 hover:-translate-y-2 duration-300 ease-in-out cursor-pointer">
+      <div className="service-card bg-white rounded-xl lg:w-[170px] h-[160px] w-max flex flex-col gap-4 items-center justify-center p-3">
+        <div className="icon-container">{Icon}</div>
+        <h2 className="md:text-xl text-lg text-blue-dark text-center font-bold capitalize ">
           {title}
         </h2>
       </div>
@@ -96,11 +98,15 @@ export const ServiceCard = ({ title, Icon }: OurServiceProsData) => {
   );
 };
 
-export const WebSiteDevelopmentIcon = () => {
+// *****************************icons*********************************
+// *******************************************************************
+export const WebSiteDevelopmentIcon = ({width,height}:{width:number,height:number}) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={width}
+      height={height}
+      // width="60"
+      // height="60"
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -148,11 +154,13 @@ export const WebSiteDevelopmentIcon = () => {
   );
 };
 
-export const SeoOptimise = () => {
+export const SeoOptimise = ({width,height}:{width:number,height:number}) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={width}
+      height={height}
+      // width="60"
+      // height="60"
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -181,11 +189,13 @@ export const SeoOptimise = () => {
   );
 };
 
-export const SocailMediaManageMent = () => {
+export const SocailMediaManageMent = ({width,height}:{width:number,height:number}) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={width}
+      height={height}
+      // width="60"
+      // height="60"
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -229,11 +239,13 @@ export const SocailMediaManageMent = () => {
   );
 };
 
-export const GoogleBusiness = () => {
+export const GoogleBusiness = ({width,height}:{width:number,height:number}) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={width}
+      height={height}
+      // width="60"
+      // height="60"
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -246,11 +258,13 @@ export const GoogleBusiness = () => {
   );
 };
 
-export const CustomizedMarket = () => {
+export const CustomizedMarket = ({width,height}:{width:number,height:number}) => {
   return (
     <svg
-      width="60"
-      height="60"
+      width={width}
+      height={height}
+      // width="60"
+      // height="60"
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -290,11 +304,13 @@ export const CustomizedMarket = () => {
   );
 };
 
-export const DriveDirectBookin = () => {
+export const DriveDirectBookin = ({width,height}:{width:number,height:number}) => {
   return (
     <svg
-      width="58"
-      height="56"
+      // width="58"
+      // height="56"
+      width={width}
+      height={height}
       viewBox="0 0 58 56"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -307,30 +323,57 @@ export const DriveDirectBookin = () => {
   );
 };
 
-const Services = [
+const ServicesDesktop = [
   {
     title: "website development",
-    Icon: <WebSiteDevelopmentIcon />,
+    Icon: <WebSiteDevelopmentIcon width={60} height={60} />,
   },
   {
     title: "Search Engine Optimization",
-    Icon: <SeoOptimise />,
+    Icon: <SeoOptimise width={60} height={60} />,
   },
   {
     title: "Social Media Management",
-    Icon: <SocailMediaManageMent />,
+    Icon: <SocailMediaManageMent width={60} height={60} />,
   },
   {
     title: "Google My Business",
-    Icon: <GoogleBusiness />,
+    Icon: <GoogleBusiness width={60} height={60} />,
   },
   {
     title: "Customized Marketing",
-    Icon: <CustomizedMarket />,
+    Icon: <CustomizedMarket width={60} height={60} />,
   },
   {
     title: "Drive Direct Bookings",
-    Icon: <DriveDirectBookin />,
+    Icon: <DriveDirectBookin width={58} height={56} />,
+  },
+];
+
+const ServicesMobile = [
+  {
+    title: "website development",
+    Icon: <WebSiteDevelopmentIcon width={80} height={80} />,
+  },
+  {
+    title: "Search Engine Optimization",
+    Icon: <SeoOptimise width={80} height={80} />,
+  },
+  {
+    title: "Social Media Management",
+    Icon: <SocailMediaManageMent width={80} height={80} />,
+  },
+  {
+    title: "Google My Business",
+    Icon: <GoogleBusiness width={80} height={80} />,
+  },
+  {
+    title: "Customized Marketing",
+    Icon: <CustomizedMarket width={80} height={80} />,
+  },
+  {
+    title: "Drive Direct Bookings",
+    Icon: <DriveDirectBookin width={78} height={76} />,
   },
 ];
 

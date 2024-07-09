@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import Logo from '../../../public/images/logo.webp'
+import Logo from "../../../public/images/logo.webp";
 
 
 const Header = () => {
     return (
         <header className="py-3">
             <nav className="max-width flex justify-between">
-                <div className="relative max-w-[164px] w-full aspect-[4/1.3]">
+                <div className="relative max-w-[164px] w-full lg:aspect-[4/1.3] aspect-[4/1.7]">
                     <Image src={Logo} alt="alt" priority={true} fill className="object-contain" />
 
                 </div>
@@ -24,8 +24,8 @@ const Header = () => {
                     <Link
                         href={"tel:+919501868775 "}
                         className="flex items-center text-orange-500 text-lg border border-[var(--primary-orange)] rounded-lg md:px-5 px-3 md:py-4 py-2"
-                    >
-                        <OutlinePhoneIcon /> +919501868775
+                    > <span className="sr-only">call icon</span>
+                        <OutlinePhoneIcon width={30} height={40} /> +919501868775
                     </Link>
                 </div>
 
@@ -34,8 +34,8 @@ const Header = () => {
                     <Link
                         href={"tel:+919501868775 "}
                         className="flex items-center"
-                    >
-                        <OutlinePhoneIcon />
+                    > <span className="sr-only">call icon</span>
+                        <OutlinePhoneIcon width={40} height={45}/>
                     </Link>
                 </div>
             </nav>
@@ -57,11 +57,13 @@ export const OutlineMailIcon = () => {
     )
 }
 
-export const OutlinePhoneIcon = () => {
+export const OutlinePhoneIcon = ({width,height}:{width:number,height:number}) => {
     return (
         <svg
-            width="30"
-            height="40"
+            width={width}
+            height={height}
+            // width="30"
+            // height="40"
             viewBox="0 0 26 26"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -72,4 +74,14 @@ export const OutlinePhoneIcon = () => {
             />
         </svg>
     );
+};
+
+export const OutLineLocationIcon = () => {
+    return (
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 14.625C12.1965 14.625 11.4111 14.3867 10.743 13.9403C10.0749 13.494 9.55422 12.8595 9.24674 12.1172C8.93926 11.3748 8.85881 10.558 9.01556 9.76995C9.17231 8.9819 9.55923 8.25803 10.1274 7.68988C10.6955 7.12173 11.4194 6.73481 12.2074 6.57806C12.9955 6.42131 13.8123 6.50176 14.5547 6.80924C15.297 7.11672 15.9315 7.63742 16.3778 8.3055C16.8242 8.97357 17.0625 9.75902 17.0625 10.5625C17.0612 11.6395 16.6328 12.6721 15.8712 13.4337C15.1096 14.1953 14.077 14.6237 13 14.625ZM13 8.125C12.5179 8.125 12.0466 8.26796 11.6458 8.53579C11.245 8.80363 10.9325 9.18432 10.748 9.62971C10.5636 10.0751 10.5153 10.5652 10.6093 11.038C10.7034 11.5109 10.9355 11.9452 11.2764 12.2861C11.6173 12.627 12.0516 12.8591 12.5245 12.9532C12.9973 13.0472 13.4874 12.9989 13.9328 12.8145C14.3782 12.63 14.7589 12.3175 15.0267 11.9167C15.2945 11.5159 15.4375 11.0446 15.4375 10.5625C15.4369 9.91623 15.1798 9.29662 14.7229 8.83964C14.2659 8.38266 13.6463 8.12565 13 8.125Z" fill="#F26633" />
+            <path d="M13 24.375L6.14576 16.2914C6.05051 16.1701 5.95626 16.0479 5.86301 15.925C4.69277 14.3824 4.06033 12.4988 4.06251 10.5625C4.06251 8.19213 5.00413 5.91884 6.68024 4.24273C8.35634 2.56663 10.6296 1.625 13 1.625C15.3704 1.625 17.6437 2.56663 19.3198 4.24273C20.9959 5.91884 21.9375 8.19213 21.9375 10.5625C21.9394 12.4978 21.3073 14.3805 20.1378 15.9226L20.137 15.925C20.137 15.925 19.8933 16.2451 19.8567 16.2882L13 24.375ZM7.16057 14.9459C7.16057 14.9459 7.34988 15.1962 7.39294 15.2498L13 21.8628L18.6144 15.2409C18.6501 15.1962 18.8403 14.9443 18.8411 14.9435C19.7976 13.6834 20.3144 12.1445 20.3125 10.5625C20.3125 8.6231 19.5421 6.76314 18.1707 5.39178C16.7994 4.02042 14.9394 3.25 13 3.25C11.0606 3.25 9.20065 4.02042 7.82929 5.39178C6.45793 6.76314 5.68751 8.6231 5.68751 10.5625C5.6855 12.1455 6.20299 13.6854 7.16057 14.9459Z" fill="#F26633" />
+        </svg>
+
+    )
 };

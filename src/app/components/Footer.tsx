@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../public/images/logo.webp";
-import { OutlineMailIcon, OutlinePhoneIcon } from "./Header";
+import { OutlineMailIcon, OutlinePhoneIcon, OutLineLocationIcon } from './Header';
+
 
 
 const Footer = () => {
     return (
-        <footer className="pt-12 bg-gray-secondary">
+        <footer className="lg:pt-12 pt-9 bg-gray-secondary">
             <div className="max-width">
                 <div className="flex justify-center">
                     <Image
@@ -17,9 +18,12 @@ const Footer = () => {
                     />
                 </div>
                 <div className="flex flex-col gap-4 items-center mt-6 max-w-[700px] mx-auto">
-                    <p className="text-blue-dark text-lg text-center">
+                    <p className="text-blue-dark text-lg text-center flex justify-center">
+                        <span 
+                        // className="-ml-2 lg:-ml-0"
+                        ><OutLineLocationIcon/></span>
                         Level 2, Augusta Point, Golf Course Rd, Parsvnath Exotica, Sarswati
-                        Kunj II, DLF Phase 5, Sector 53, Gurugram, Haryana 122002
+                        Kunj II, DLF Phase 5,<br className="hidden lg:block" /> Sector 53, Gurugram, Haryana 122002
                     </p>
                     <Link
                         href={`mailto:sachin@fielmente.com`}
@@ -32,7 +36,7 @@ const Footer = () => {
                         href={"tel:+919501868775"}
                         className="flex items-center text-blue-dark text-lg "
                     >
-                        <OutlinePhoneIcon />
+                        <OutlinePhoneIcon width={30} height={40}/>
                         +919501868775
                     </Link>
                 </div>

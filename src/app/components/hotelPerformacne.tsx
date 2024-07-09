@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import { Autoplay } from 'swiper/modules';
 import Link from "next/link";
 import React from "react";
-import SectionHeading from "./SectionHeadings/SectionHeading";
+import SectionHeading from "./SectionHeading";
 
 export interface HotelPerformacePropsData {
   title: string;
@@ -32,29 +32,29 @@ const HotelPerormaceData = [
       "Direct potential guests to your website or booking page, increasing direct bookings and reducing reliance on third-party platforms.",
   },
   {
-    title: "Drive Direct Bookings",
+    title: "Compete Effectively",
     subtitle:
-      "Direct potential guests to your website or booking page, increasing direct bookings and reducing reliance on third-party platforms.",
+      "Stand out from competitors in search results, capturing the attention of potential guests and gaining a competitive edge.",
   },
   {
-    title: "Drive Direct Bookings",
+    title: "Real-Time Optimization",
     subtitle:
-      "Direct potential guests to your website or booking page, increasing direct bookings and reducing reliance on third-party platforms.",
+      "Continuously monitor and optimize your campaigns to improve performance, maximize ROI, and drive more bookings.",
   },
   {
-    title: "Drive Direct Bookings",
+    title: "Increased Visibility",
     subtitle:
-      "Direct potential guests to your website or booking page, increasing direct bookings and reducing reliance on third-party platforms.",
+      "Advertise your hotel prominently on Google search results, reaching a larger audience actively searching for accommodations.",
   },
   {
-    title: "Drive Direct Bookings",
+    title: "Targeted Advertising",
     subtitle:
-      "Direct potential guests to your website or booking page, increasing direct bookings and reducing reliance on third-party platforms.",
+      "Precisely target potential guests based on location, interests, and search, ensuring your ads reach the right people at the right time.",
   },
   {
-    title: "Drive Direct Bookings",
+    title: "Cost-Effective Results",
     subtitle:
-      "Direct potential guests to your website or booking page, increasing direct bookings and reducing reliance on third-party platforms.",
+      "Pay only for clicks or conversions, making Google Ads a cost-effective advertising method with measurable results.",
   },
 ];
 
@@ -104,8 +104,8 @@ function HotelPerformacne() {
       </div>
       <div className="flex justify-center mt-16">
         <Link
-          href={"/contact"}
-          className="bg-orange-primary px-8 py-3 rounded-md text-lg border border-orange-primary hover:bg-transparent hover:text-blue-dark duration-300"
+          href={"#contact"}
+          className="bg-orange-primary font-bold px-8 py-3 rounded-md text-lg border border-orange-primary hover:bg-transparent hover:text-blue-dark duration-300"
         >
           Contact Us
         </Link>

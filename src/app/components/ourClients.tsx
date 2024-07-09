@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay } from 'swiper/modules';
-import SectionHeading from "./SectionHeadings/SectionHeading";
+import SectionHeading from "./SectionHeading";
 import React from "react";
 
 import Client1 from "../../../public/images/Client1.png";
@@ -83,13 +83,13 @@ function OurClients() {
         </div>
       </div>
       {/* small screen view */}
-      <div className='lg:hidden block py-3'>
+      <div className='lg:hidden block mt-7'>
         <div>
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={10}
-            loop={true}
+            spaceBetween={15}
             slidesPerView={2}
+            loop={true}
             speed={900}
             autoplay={{
               delay: 4000,
@@ -111,7 +111,7 @@ function OurClients() {
               <SwiperSlide key={index}>
                 <Link
                   href={"/"}
-                  className="relative w-full aspect-[4/3.7]"
+                  className="relative w-full aspect-[5/4.1]"
                 >
                   <Image
                     src={item.src}

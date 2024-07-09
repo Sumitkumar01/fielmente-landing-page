@@ -1,6 +1,9 @@
-import React from "react";
+"use client"
+import axios from "axios";
+import React, { useState } from "react";
 
 function MarketingAgency() {
+  
   return (
     <section className="grid lg:grid-cols-2 gap-10">
       {/* Left Content**** */}
@@ -15,14 +18,17 @@ function MarketingAgency() {
         </p>
         <div className="flex md:flex-row flex-col md:items-center md:gap-8 gap-3">
           <p className="text-lg flex items-center gap-5">
-            Trusted by leading brands: <GoogleIcon />
+            Trusted by leading brands: <span className="lg:block hidden"><GoogleIcon /></span>
           </p>
-          <TrustPiolet />
+          <div className="lg:block flex gap-10 lg:ps-0 ps-5">
+          <span className="block lg:hidden"><GoogleIcon /></span><TrustPiolet />
+
+          </div>
         </div>
       </div>
 
       {/* Right Consulation Form**** */}
-      <div className="flex lg:justify-end">
+      <div className="flex lg:justify-end lg:pt-0 pt-2" id="contact">
         <ConsulationForm />
       </div>
     </section>
@@ -30,47 +36,100 @@ function MarketingAgency() {
 }
 
 export const ConsulationForm = () => {
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userMessage, setUserMessage] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [formRes, setFormRes] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // setFormRes(true);
+    
+    try {
+      const data = await axios.post("https://nexon.eazotel.com/eazotel/addcontacts", {
+        Domain: "rivieraresort", // Replace with your actual domain value
+        email: userEmail,
+        Name: userName,
+        Contact: userPhone,
+        // Subject: userMessage,
+        Description: userMessage,
+      })
+      if (data.status) {
+        // console.log(data.Status);
+        setFormRes(true);
+        setUserName("");
+        setUserEmail("");
+        setUserMessage("");
+        setUserPhone("");
+        setFormRes(false);
+        alert("message sended");
+      }
+      else {
+        setFormRes(false);
+        alert("something wrong!");
+      }
+
+    
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    setFormRes(false);
+    alert("Something went wrong!");
+    }
+  };
   return (
-    <form className="md:min-w-[330px] bg-gray-50 rounded-lg flex flex-col gap-8 px-6 py-8">
-      <h2 className="text-blue-dark capitalize text-3xl font-normal">
+    <form  className="lg:min-w-[330px] min-w-full bg-gray-50 rounded-lg flex flex-col gap-8 px-6 py-8" onSubmit={handleSubmit}>
+      <h2 className="text-blue-dark capitalize text-3xl font-normal tracking-wider">
         Get A FREE Consultation!
       </h2>
-      <div className="border border-gray-400 rounded-lg p-3 flex items-center">
+      <div className="border border-gray-400 rounded-lg p-5 flex items-center gap-3">
         <FillUserIcon />
         <input
           type="text"
-          className="outline-none text-black sm:text-lg font-medium"
+          className="outline-none text-black text-2xl font-medium w-full"
           placeholder="Your Name*"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          required
         />
       </div>
-      <div className="border border-gray-400 rounded-lg p-3 flex items-center gap-2">
+      <div className="border border-gray-400 rounded-lg p-5 flex items-center gap-3">
         <FillPhoneIcon />
         <input
           type="text"
-          className="outline-none text-black sm:text-lg font-medium"
+          className="outline-none text-black text-2xl font-medium w-full"
           placeholder="Phone Number*"
+          value={userPhone}
+          onChange={(e) => setUserPhone(e.target.value)}
+          required
         />
       </div>
-      <div className="border border-gray-400 rounded-lg p-3 flex items-center gap-2">
+      <div className="border border-gray-400 rounded-lg p-5 flex items-center gap-3">
         <FillMail />
         <input
           type="text"
-          className="outline-none text-black sm:text-lg font-medium"
+          className="outline-none text-black text-2xl font-medium w-full"
           placeholder="Email*"
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
+          required
         />
       </div>
-      <div className="border border-gray-400 rounded-lg p-3 flex items-center gap-1">
+      <div className="border border-gray-400 rounded-lg p-5 flex items-center gap-3">
         <FillMessage />
         <input
           type="text"
-          className="outline-none text-black sm:text-lg font-medium"
+          className="outline-none text-black text-2xl font-medium w-full"
           placeholder="Message*"
+          value={userMessage}
+          onChange={(e) => setUserMessage(e.target.value)}
+          required
         />
       </div>
 
       {/* Submit Button**** */}
       <div>
-        <button className="bg-orange-primary border border-orange-primary hover:bg-transparent hover:text-blue-dark w-full py-3 text-lg rounded-lg inline-block active:scale-90 duration-200">
+        <button type="submit" className="bg-orange-primary border border-orange-primary hover:bg-transparent hover:text-blue-dark w-full py-3 text-lg rounded-lg inline-block active:scale-90 duration-200">
           Submit
         </button>
       </div>
