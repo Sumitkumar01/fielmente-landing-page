@@ -19,14 +19,22 @@ const config: Config = {
         },
         blue: {
           dark: "#110D3C",
+          light: "#7DD2EE",
+          accent:"#6F82AF",
+          sapphire:"#1E6A98"
         },
         orange: {
           primary: "#F26633",
+          secondary: "#C74129"
         },
         gray: {
           primary: "#797979",
           secondary: "#F5F5F5",
         },
+        mustard:{
+          primary: "#F2B203"
+        },
+        
       },
       fontSize: {
         "6xl": ["60px", "70px"],

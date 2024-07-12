@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import axios from "axios";
 import React, { useState } from "react";
+import SubmitPopup from "./SubmitPopup";
 
 function MarketingAgency() {
-  
   return (
     <section className="grid lg:grid-cols-2 gap-10">
       {/* Left Content**** */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col justify-center gap-6">
         <h2 className="md:text-6xl text-3xl w-[90%] font-medium">
           Work with the India’s Best Hotel Marketing{" "}
           <span className="text-orange-primary font-bold">Agency</span>
@@ -18,11 +18,16 @@ function MarketingAgency() {
         </p>
         <div className="flex md:flex-row flex-col md:items-center md:gap-8 gap-3">
           <p className="text-lg flex items-center gap-5">
-            Trusted by leading brands: <span className="lg:block hidden"><GoogleIcon /></span>
+            Trusted by leading brands:{" "}
+            <span className="lg:block hidden">
+              <GoogleIcon />
+            </span>
           </p>
           <div className="lg:block flex gap-10 lg:ps-0 ps-5">
-          <span className="block lg:hidden"><GoogleIcon /></span><TrustPiolet />
-
+            <span className="block lg:hidden">
+              <GoogleIcon />
+            </span>
+            <TrustPiolet />
           </div>
         </div>
       </div>
@@ -42,43 +47,59 @@ export const ConsulationForm = () => {
   const [userPhone, setUserPhone] = useState("");
   const [formRes, setFormRes] = useState(false);
 
+  const [openPopup, setOpenPopup] = useState(false);
+  const [popupMsg, setPopupMsg] = useState("");
+  const [loader, setLoader] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setFormRes(true);
-    
+    setFormRes(true);
+
     try {
-      const data = await axios.post("https://nexon.eazotel.com/eazotel/addcontacts", {
-        Domain: "rivieraresort", // Replace with your actual domain value
-        email: userEmail,
-        Name: userName,
-        Contact: userPhone,
-        // Subject: userMessage,
-        Description: userMessage,
-      })
+      setLoader(true);
+      const data = await axios.post(
+        "https://nexon.eazotel.com/eazotel/addcontacts",
+        {
+          Domain: "fielmente", // Replace with your actual domain value
+          email: userEmail,
+          Name: userName,
+          Contact: userPhone,
+          // Subject: userMessage,
+          Description: userMessage,
+        }
+      );
       if (data.status) {
+        setLoader(false);
+        setPopupMsg("You information has been Received");
+        setOpenPopup(true);
         // console.log(data.Status);
         setFormRes(true);
         setUserName("");
         setUserEmail("");
         setUserMessage("");
         setUserPhone("");
+      } else {
+        setLoader(false);
+        setPopupMsg("Something went wrong!");
+        setOpenPopup(false);
         setFormRes(false);
-        alert("message sended");
       }
-      else {
-        setFormRes(false);
-        alert("something wrong!");
-      }
-
-    
     } catch (error) {
+      setLoader(false);
       console.error("Error submitting form:", error);
-    setFormRes(false);
-    alert("Something went wrong!");
+      setFormRes(false);
+      alert("Something went wrong!");
     }
   };
+
+  const onClose = () => {
+    setOpenPopup(!openPopup);
+  };
   return (
-    <form  className="lg:min-w-[330px] min-w-full bg-gray-50 rounded-lg flex flex-col gap-8 px-6 py-8" onSubmit={handleSubmit}>
+    <form
+      className="lg:min-w-[330px] min-w-full bg-gray-50 rounded-lg flex flex-col gap-8 px-6 py-8"
+      onSubmit={handleSubmit}
+    >
       <h2 className="text-blue-dark capitalize text-3xl font-normal tracking-wider">
         Get A FREE Consultation!
       </h2>
@@ -115,24 +136,41 @@ export const ConsulationForm = () => {
           required
         />
       </div>
-      <div className="border border-gray-400 rounded-lg p-5 flex items-center gap-3">
+      <div className="border border-gray-400 rounded-lg p-5 flex gap-3">
         <FillMessage />
-        <input
-          type="text"
-          className="outline-none text-black text-2xl font-medium w-full"
+
+        <textarea
+          className="outline-none text-black text-2xl font-medium w-full resize-none"
           placeholder="Message*"
           value={userMessage}
+          rows={4}
           onChange={(e) => setUserMessage(e.target.value)}
           required
-        />
+        ></textarea>
       </div>
 
       {/* Submit Button**** */}
       <div>
-        <button type="submit" className="bg-orange-primary border border-orange-primary hover:bg-transparent hover:text-blue-dark w-full py-3 text-lg rounded-lg inline-block active:scale-90 duration-200">
-          Submit
-        </button>
+        {loader ? (
+          <button
+            type="submit"
+            className="bg-orange-primary border border-orange-primary hover:bg-transparent hover:text-blue-dark w-full py-3 text-lg rounded-lg inline-block active:scale-90 duration-200"
+          >
+            Submiting...
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="bg-orange-primary border border-orange-primary hover:bg-transparent hover:text-blue-dark w-full py-3 text-lg rounded-lg inline-block active:scale-90 duration-200"
+          >
+            Submit
+          </button>
+        )}
       </div>
+
+      {openPopup && (
+        <SubmitPopup isShow={openPopup} msg={popupMsg} onClose={onClose} />
+      )}
     </form>
   );
 };
